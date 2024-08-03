@@ -42,7 +42,7 @@ def ventana_principal_registro():
 
         mensualidad = mensualidadEntrada.get()
         estado = "activado"
-        api = "anotherkey789012"
+        api = entApi.get()
         registrar_cliente(nombre, direccion, telefono, equipos, ip, velocidad, fechaInstalacion, proximoPago, mensualidad, estado, api)
         messagebox.showinfo("Guardado", "Cliente registrado con exito")
         limpiar()
@@ -188,6 +188,11 @@ def ventana_principal_registro():
         pady=10
     )
     
+    lbApi = Label(vistaRegistro, text="Llave ApO")
+    entApi = Entry(vistaRegistro, width=25)
+
+    lbApi.grid(row=3, column=2)
+    entApi.grid(row=3, column=3)
     # Crear un Frame para agrupar los botones
     frame_botones = Frame(vistaRegistro)
     frame_botones.grid(column=0, row=4, columnspan=4, padx=10, pady=10)

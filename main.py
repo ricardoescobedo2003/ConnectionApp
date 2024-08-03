@@ -18,7 +18,10 @@ import tkinter as tk
 import sqlite3
 from name_wisp import nombre_wisp
 from reiniciar_antena import reiniciar
-# Lista de claves de activación válidas (en una aplicación real, esto se almacenaría de forma segura en una base de datos)
+from definir_mensaje_automatico import definir_mensaje_automatico
+from enviar_mensaje_automatoco_vs import iniciar_envio_masivo_automatico
+from enviar_mensaje_personal import vista_mensaje_personal
+
 valid_keys = ['NhqnMHGR074PjBPG', 'anotherkey789012', 'MinuzaFea265/']
 
 url = "https://www.facebook.com/profile.php?id=100065750894627"
@@ -65,7 +68,7 @@ velocidades = ["100M/10", "100M15M", "100M/20M", "100M/25M", "100M/30M", "100M/5
 def leer_usuarios(nombre="", ip="", velocidad="", mensualidad=""):
     conn = sqlite3.connect('network_software.db')
     cursor = conn.cursor()
-    query = 'SELECT id, nombre, direccion, telefono, equipos, ip, estado, proximoPago FROM clientes WHERE 1=1'
+    query = 'SELECT id, nombre, direccion, telefono, api, ip, estado, proximoPago FROM clientes WHERE 1=1'
     
     params = []
     if nombre:
@@ -157,6 +160,14 @@ def create_main_window():
     opciones_wisp.add_command(label="Nombre de wisp", command=nombre_wisp)
     menu_bar.add_cascade(label="Opciones de wisp", menu=opciones_wisp)
 
+
+    # Crear el menú Herramientas de red
+    opciones_bot = Menu(menu_bar, tearoff=0)
+    opciones_bot.add_command(label="Definir mensaje automatico", command=definir_mensaje_automatico)
+    opciones_bot.add_command(label="Enviar mensaje automatico", command=iniciar_envio_masivo_automatico)
+    opciones_bot.add_command(label="Enviar mensaje personalizado", command=vista_mensaje_personal)
+    menu_bar.add_cascade(label="BotWhatsApp", menu=opciones_bot)
+
     # Crear opción de creación de base
     creacion_base = Menu(menu_bar, tearoff=0)
     creacion_base.add_command(label="?", command=version)
@@ -198,14 +209,14 @@ def create_main_window():
 
     # Crear Treeview
     global tree
-    tree = ttk.Treeview(root, columns=("Id", "Nombre", "Direccion", "Telefono", "Equipos", "IP", "Estado", "ProximoPago"), show="headings")
+    tree = ttk.Treeview(root, columns=("Id", "Nombre", "Direccion", "Telefono", "api", "IP", "Estado", "ProximoPago"), show="headings")
     
     # Definir las columnas
     tree.heading("Id", text="Id")
     tree.heading("Nombre", text="Nombre")
     tree.heading("Direccion", text="Direccion")
     tree.heading("Telefono", text="Telefono")
-    tree.heading("Equipos", text="Equipos")
+    tree.heading("api", text="api")
     tree.heading("IP", text="IP")
     tree.heading("Estado", text="Estado")
     tree.heading("ProximoPago", text="Proximo Pago")
@@ -214,7 +225,7 @@ def create_main_window():
     tree.column("Nombre", width=150)
     tree.column("Direccion", width=150)
     tree.column("Telefono", width=100)
-    tree.column("Equipos", width=100)
+    tree.column("api", width=100)
     tree.column("IP", width=100)
     tree.column("Estado", width=100)
     tree.column("ProximoPago", width=150)

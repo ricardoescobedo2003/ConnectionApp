@@ -118,6 +118,9 @@ def ventana_buscar_actualizar():
     mensualidad_label = tk.Label(vistaRegistro, text="Mensualidad")
     mensualidad_entry = tk.Entry(vistaRegistro, width=25)
 
+    api_label = tk.Label (vistaRegistro, text="ApI")
+    ent_api = tk.Entry(vistaRegistro, width=25)
+
     id_label.grid(column=0, row=0, padx=10, pady=10)
     id_entry.grid(column=1, row=0, padx=10, pady=10)
     buscar_button.grid(column=3, row=0, padx=10, pady=10)
@@ -142,6 +145,7 @@ def ventana_buscar_actualizar():
 
     mensualidad_label.grid(column=0, row=5, padx=10, pady=10)
     mensualidad_entry.grid(column=1, row=5, padx=10, pady=10)
+
 
 
     # Crear un Frame para agrupar los botones
