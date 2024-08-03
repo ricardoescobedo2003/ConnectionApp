@@ -53,7 +53,7 @@ def vista_mensaje_personal():
     tamano = 15
 
     vista_cambio_velocidad = tk.Tk()
-    vista_cambio_velocidad.title("Cambio de velocidad")
+    vista_cambio_velocidad.title("Mensaje Personalizado")
     vista_cambio_velocidad.geometry("750x350")
     vista_cambio_velocidad.resizable(False, False)
 
@@ -111,6 +111,3 @@ def vista_mensaje_personal():
     cancelar_button.pack(side=tk.LEFT, padx=5)
 
     vista_cambio_velocidad.mainloop()
-
-# Llamar a la función para mostrar la vista
-vista_mensaje_personal()
